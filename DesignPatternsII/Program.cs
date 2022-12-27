@@ -1,4 +1,4 @@
-﻿using DesignPatternsII.Cap3;
+﻿using DesignPatternsII.Cap4;
 using System;
 
 namespace DesignPatternsII
@@ -7,21 +7,12 @@ namespace DesignPatternsII
     {
         static void Main(string[] args)
         {
-            Historico historico = new Historico();
-            Contrato c = new Contrato(DateTime.Now, "Rafael", TipoContrato.Novo);
-            historico.Adiciona(c.SalvaStatus());
+            IExpressao esquerda = new Soma(new Numero(1), new Numero(10));
+            IExpressao direita = new Subtracao(new Numero(20), new Numero(10));
+            IExpressao soma = new Soma(esquerda, direita);
 
-            Console.WriteLine(c.Tipo);
+            Console.WriteLine(soma.Avalia());
 
-            c.Avanca();
-            historico.Adiciona(c.SalvaStatus());
-
-            c.Avanca();
-            Console.WriteLine(c.Tipo);
-            historico.Adiciona(c.SalvaStatus());
-
-
-            Console.WriteLine(historico.GetStatus(2).Contrato.Tipo);
             Console.ReadKey();
         }
     }
