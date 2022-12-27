@@ -1,5 +1,6 @@
-﻿using System;
-using System.Data;
+﻿using DesignPatternsII.Cap2;
+using System;
+using System.Collections.Generic;
 
 namespace DesignPatternsII
 {
@@ -7,10 +8,19 @@ namespace DesignPatternsII
     {
         static void Main(string[] args)
         {
-            IDbConnection conexao = new ConnectionFactory().GetConnection();
+            NotasMusicais notas = new NotasMusicais();
+            IList<INota> musica = new List<INota>()
+            {
+                notas.Pega("do"),
+                notas.Pega("re"),
+                notas.Pega("mi"),
+                notas.Pega("fa"),
+                notas.Pega("fa"),
+                notas.Pega("fa"),
+            };
 
-            IDbCommand comando = conexao.CreateCommand();
-            comando.CommandText = "select * from tabela";
+            Piano piano = new Piano();
+            piano.Toca(musica);
 
 
             Console.ReadKey();
