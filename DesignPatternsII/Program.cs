@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data;
 
 namespace DesignPatternsII
 {
@@ -10,6 +7,13 @@ namespace DesignPatternsII
     {
         static void Main(string[] args)
         {
+            IDbConnection conexao = new ConnectionFactory().GetConnection();
+
+            IDbCommand comando = conexao.CreateCommand();
+            comando.CommandText = "select * from tabela";
+
+
+            Console.ReadKey();
         }
     }
 }
