@@ -1,4 +1,4 @@
-﻿using DesignPatternsII.Cap7;
+﻿using DesignPatternsII.Cap8;
 using System;
 
 namespace DesignPatternsII
@@ -7,15 +7,16 @@ namespace DesignPatternsII
     {
         static void Main(string[] args)
         {
-            FilaDeTrabalho fila = new FilaDeTrabalho();
-            Pedido pedido1 = new Pedido("Rafael", 100.0);
-            Pedido pedido2 = new Pedido("Jose", 200.0);
-            fila.Adiciona(new PagaPedido(pedido1));
-            fila.Adiciona(new PagaPedido(pedido2));
+            Cliente cliente = new Cliente();
 
-            fila.Adiciona(new FinalizaPedido(pedido1));
+            cliente.Nome = "Rafael";
+            cliente.Endereco = "Rua Jose Gregorio";
+            cliente.DataDeNascimento = DateTime.Now;
 
-            fila.Processa();
+            string xml = new GeradorXml().GeraXml(cliente);
+
+            Console.WriteLine(xml);
+
 
             Console.ReadKey();
         }
