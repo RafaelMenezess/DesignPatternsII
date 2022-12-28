@@ -1,4 +1,4 @@
-﻿using DesignPatternsII.Cap6;
+﻿using DesignPatternsII.Cap7;
 using System;
 
 namespace DesignPatternsII
@@ -7,11 +7,15 @@ namespace DesignPatternsII
     {
         static void Main(string[] args)
         {
-            IMensagem mensagem = new MensagemCliente("Victor");
-            IEnviador enviador = new EnviaPorSms();
-            mensagem.Enviador = enviador;
-            mensagem.Envia();
+            FilaDeTrabalho fila = new FilaDeTrabalho();
+            Pedido pedido1 = new Pedido("Rafael", 100.0);
+            Pedido pedido2 = new Pedido("Jose", 200.0);
+            fila.Adiciona(new PagaPedido(pedido1));
+            fila.Adiciona(new PagaPedido(pedido2));
 
+            fila.Adiciona(new FinalizaPedido(pedido1));
+
+            fila.Processa();
 
             Console.ReadKey();
         }
